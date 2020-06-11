@@ -312,12 +312,12 @@ mv mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite TFLite_model/edgetpu.t
 
 The *vision-social-dist-final.py* file is fed with the following arguments in the command line inference, where
 
---modeldir "Path to an .xml file with Face Detection model>"
---graph "Path to an .xml file with Facial Landmark Detection model"
---labels"Path to an .xml file with Head Pose Estimation model".
---threshold"Path to an .xml file with Gaze Estimation model"
---input"Path to image or video file or CAM"
---edgetpu "Target device"
+--modeldir "Folder path to the .tflite file."
+--graph "Name of the .tflite file, if different than detect.tflite."
+--labels "Name of the labelmap file, if different than labelmap.txt.".
+--input "Path to image or video file or CAM."
+--edgetpu "Use Coral Edge TPU Accelerator to speed up detection"
+--threshold "Probability threshold for detection filtering"
 
 Run the vision-social-dist-final.py
 
