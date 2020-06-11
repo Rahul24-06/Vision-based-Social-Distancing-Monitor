@@ -23,8 +23,8 @@ import sys
 import importlib.util
 from scipy.spatial import distance as dist
 
-MIN_DISTANCE = 50 #min safe dist (in pixels) that two people can be from each other. 
-NEAR_DISTANCE = 75 #dist (in pixels) that two people are nearby. 
+MIN_DISTANCE = 75 #min safe dist (in pixels) that two people can be from each other. 
+NEAR_DISTANCE = 100 #dist (in pixels) that two people are nearby. 
 
 """
     Parse command line arguments.
@@ -333,8 +333,10 @@ else:
                 print("Area:", end=" ")
                 print(area)
                 
+                """
                 if(INPUT_PATH != 'CAM' and area > 90000):
                     break
+                """
                 
                 centerX = (xmin+xmax)/2
                 centerY = (ymin+ymax)/2
@@ -360,6 +362,13 @@ else:
                     elif D[i, j] < NEAR_DISTANCE:
                         nearby.add(i)
                         nearby.add(j)
+                        
+        text = "Total People detected: 0"
+        text1 = "People in Safe distance: 0"
+        text2 = "People in Alert zone : 0"
+        text3 = "People Very Close: 0"
+        text4 = "The Lonely Programmer"
+        text5 = "Inference Time: {:.2f}ms".format(inference_time*1000)                
                         
         for (i, (prob, bbox, centroid)) in enumerate(res):
             print(bbox)
@@ -402,6 +411,18 @@ else:
             
             cv2.rectangle(frame, (0, 0), (330, 30), (255,255, 255), cv2.FILLED) # Draw Black box to put label text in
             cv2.putText(frame, text5, (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+        
+        cv2.rectangle(frame, (5, frame.shape[0] - 150), (380, frame.shape[0]), (0, 0, 0), cv2.FILLED) # Draw Black box to put label text in
+        cv2.putText(frame, text, (10, frame.shape[0] - 115), cv2.FONT_HERSHEY_SIMPLEX, 0.85, (255, 255, 255), 3)
+        cv2.putText(frame, text1, (10, frame.shape[0] - 85), cv2.FONT_HERSHEY_SIMPLEX, 0.85, (0, 255, 0), 3)
+        cv2.putText(frame, text2, (10, frame.shape[0] - 55), cv2.FONT_HERSHEY_SIMPLEX, 0.85, (0, 165, 255), 3)
+        cv2.putText(frame, text3, (10, frame.shape[0] - 25), cv2.FONT_HERSHEY_SIMPLEX, 0.85, (0, 0, 255), 3)
+        
+        cv2.rectangle(frame, (frame.shape[1]-275, frame.shape[0] - 25), (frame.shape[1], frame.shape[0]), (255, 255, 255), cv2.FILLED) # Draw white box to put label text in
+        cv2.putText(frame, text4, (frame.shape[1]-270, frame.shape[0] - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2) # Draw label text
+        
+        cv2.rectangle(frame, (0, 0), (330, 30), (255,255, 255), cv2.FILLED) # Draw Black box to put label text in
+        cv2.putText(frame, text5, (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
         print('-------------------------------------')
         # All the results have been drawn on the frame, so it's time to display it.
         #frame = cv2.resize(frame, (int(imW/4), int(imH/4)), interpolation = cv2.INTER_AREA)
