@@ -40,11 +40,11 @@ The Overall components used for this project are shown below
 
 One of the recently expanding markets is the Edge AI device. Edge devices are the co-processors used to process AI implementation. Some of the popular edge devices are Intel's Neural Compute Stick and Google Coral Accelerator. These help us to run inference on an edge device without sending the data to the cloud.
 
-**The Kit 
+**The Kit**
 
 ![The Kit](./images/kit1.png)
 
-**Inside the Box
+**Inside the Box**
 
 ![Inside the Box](./images/kit2.png)
 
@@ -54,7 +54,7 @@ The Coral USB Accelerator is a USB device that provides an Edge TPU as a co-proc
 
 ![Coral](./images/kit3.png)
 
-**Features
+**Features**
 
 * Google Edge TPU ML accelerator coprocessor
 * USB 3.0 (USB 3.1 Gen 1) Type-C socket
@@ -227,7 +227,7 @@ scores = interpreter.get_tensor(output_details[2]['index'])[0]
 
 The Inference is performed using the invoke() and the bounding box coords, class and the confidence are extracted.
 
-**Calculating Pair-wise Distance
+**Calculating Pair-wise Distance**
 
 ![euclid](./images/euclid.png)
 
@@ -239,7 +239,7 @@ D = dist.cdist(cent[0], cent[1], metric="euclidean")
 
 The distance calculation is done using the Scipy. The centroid of the bounding boxes is computed and appended to the 'cent 'list. The Euclidean distance between the detected objects is used to measuring the social distancing level.
 
-**Filtering using threshold
+**Filtering using threshold**
 
 The threshold value is set to identify people who are very close and people who are within the short-range to the other person. The threshold value is calculated based upon the pixel value and can be altered depending on the deployment.
 
@@ -258,7 +258,7 @@ The distance is denoted in pixel. The MIN_DISTANCE and NEAR_DISTANCE are set by 
 
 Make sure that you have completed the above steps properly.
 
-**Groundwork:
+**Groundwork:**
 
 * Clone the repository
 
@@ -282,7 +282,7 @@ source coral-env/bin/activate
 
 Now you can see the coral-env virtual environment initialized.
 
-**Installing the Dependencies
+**Installing the Dependencies**
 
 To make the above installation steps simple, I've written a shell script that automatically downloads and installs the packages and dependencies necessary.
 
@@ -290,7 +290,7 @@ To make the above installation steps simple, I've written a shell script that au
 bash install_requirements.sh
 ```
 
-**Downloading the model
+**Downloading the model**
 
 The Google example using the TFLite model uses the following model and labelmap which is downloaded as follows:
 
@@ -308,20 +308,80 @@ wget https://dl.google.com/coral/canned_models/mobilenet_ssd_v2_coco_quant_postp
 mv mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite TFLite_model/edgetpu.tflite
 ```
 
+**Command-line arguments**
+
+The *vision-social-dist-final.py* file is fed with the following arguments in the command line inference, where
+
+--modeldir "Path to an .xml file with Face Detection model>"
+--graph "Path to an .xml file with Facial Landmark Detection model"
+--labels"Path to an .xml file with Head Pose Estimation model".
+--threshold"Path to an .xml file with Gaze Estimation model"
+--input"Path to image or video file or CAM"
+--edgetpu "Target device"
+
+Run the vision-social-dist-final.py
+
+* To run inference on an image file:
+
+```
+python3 vision-social-dist-final.py --edgetpu --modeldir=TFLite_model --input=/test_data/test-img4.jpg
+```
+
+* To run inference on a video file:
+
+```
+python3 vision-social-dist-final.py --edgetpu --modeldir=TFLite_model --input=/test_data/test-ped.mp4
+```
+
+* Using a camera stream instead of a video file
+
+```
+python3 vision-social-dist-final.py --edgetpu --modeldir=TFLite_model --input=CAM
+```
+
+You can find the complete code on my GitHub repository.
 
 ## Working of the Project 🔭
 
 To test the real-time scenario, we deployed it on one of the rooms to test how possibly it could be used and the results were pretty affirmative.   link
 
+*Image Source: Google*
+
+![Output](./images/output.png)
+
+*Video Source: Oxford Town Center public dataset*
+
 [![Working Video](./images/youtube1.png)](link "Working of the Project - Click to Watch!")
 
+The accuracy in detecting the people is average as the coral supports TFLite models which use an 8bit fixed-point number. i.e INT8 or UINT8. The Tensorflow model of FP32 has quantized to the INT8 TFLite model, which losses some of the important information, which degrades the performance.
+
+The detection can be improved by retraining the detection model using TF and converting it to a TFLite model. I've planned to implement some major changes with the Hardware which will be published very soon.
+
+I've also made a video tutorial of this project that will cover the entire installation of this project.
+
 [![Working Video](./images/youtube2.png)](link "Video Tutorial - Click to Watch!")
+
+NOTE: This prototype is licensed. Do not use it for commercialized products without prior permission.
+
+This system is affordable and can be deployed in public places such as hospitals and markets to decrease the spreading of the virus unknowingly. This solution will be very useful and easy to integrate with a CCTV/DVR.
+
+![Social Distancing](./images/ss2.png)
 
 ---
 
 *If you faced any issues in building this project, feel free to ask me. Please do suggest new projects that you want me to do next.*
 
 *Share this video if you like.*
+
+*Blog - https://rahulthelonelyprogrammer.blogspot.com/*
+
+*Github - https://github.com/Rahul24-06*
+
+*Instagram - https://www.instagram.com/the_lonely_programmer/*
+
+*Happy to have you subscribed: https://www.youtube.com/c/rahulkhanna24june?sub_confirmation=1*
+
+Thanks for reading!
 
 *Happy to have you subscribed: https://www.youtube.com/c/rahulkhanna24june?sub_confirmation=1*
 
