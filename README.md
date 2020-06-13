@@ -381,8 +381,4 @@ This system is affordable and can be deployed in public places such as hospitals
 
 *Happy to have you subscribed: https://www.youtube.com/c/rahulkhanna24june?sub_confirmation=1*
 
-Thanks for reading!
-
-*Happy to have you subscribed: https://www.youtube.com/c/rahulkhanna24june?sub_confirmation=1*
-
 **Thanks for reading!**
