@@ -363,7 +363,7 @@ I've also made a video tutorial of this project that will cover the entire insta
 
 NOTE: This prototype is licensed. Do not use it for commercialized products without prior permission.
 
-This system is affordable and can be deployed in public places such as hospitals and markets to decrease the spreading of the virus unknowingly. This solution will be very useful and easy to integrate with a CCTV/DVR.
+This system is affordable and can be deployed in public places such as hospitals and markets to decrease the spreading of the virus unknowingly. This solution will be very useful and easy to integrate with a CCTV/DVR. This is a valuable approach to reduce the disease's impact on the economies of these vulnerable areas
 
 ![Social Distancing](./images/ss2.png)
 
