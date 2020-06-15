@@ -1,4 +1,4 @@
-# Vision-based-Social-Distancing-Monitor
+# Social Distancing Monitor at Edge using Deep Learning Computer Vision Tutorial
 
 This project proposes to implement a computer vision-based social distancing detector.
 
@@ -6,7 +6,7 @@ This project proposes to implement a computer vision-based social distancing det
 
 COVID-19 has been a major threat of 2020. It has been six months and the researchers are working hard to develop the vaccines for this virus. We are bound to reduce the spread of this virus in order to win this pandemic. So, it is our responsibility to wash our hands and follow social distancing practices. Although we try to follow social distancing, some people are not responsible to maintain distance or stand away from the neighboring person.
 
-![Social Distancing](./images/sd.png)
+![Social Distancing](./images/youtube2.png)
 
 Maintain at least 1 metre (3 feet) distance between yourself and others. Why? When someone coughs, sneezes, or speaks they spray small liquid droplets from their nose or mouth which may contain virus. If you are too close, you can breathe in the droplets, including the COVID-19 virus if the person has the disease.
 
@@ -20,9 +20,15 @@ This project consists of a camera that will capture the image of the people ente
 
 To test the real-time scenario, we have fed the video stream to the system to test how possibly it could be used and the results were pretty affirmative.
 
-[![Working Video](./images/youtube1.png)](link "Working of the Project - Click to Watch!")
+### Project Demo/Output 👇 Click on the image
 
-[![Working Video](./images/youtube2.png)](link "Video Tutorial - Click to Watch!")
+[![Working Video](./images/youtube1.png)](https://youtu.be/RaJa4DdHlXE "Working of the Project - Click to Watch!")
+
+### Video Tutorial + Improved Accuracy Output 👇 Click on the image
+
+[![Working Video](./images/youtube2.png)](https://youtu.be/ESLQweINT_Q "Video Tutorial - Click to Watch!")
+
+---
 
 ## Introduction 🧐
 This tutorial explains the usage of Google Coral Accelerator to detect people present in the frame and calculating the distance between them. Assuming that you have already set up the Raspberry Pi with Raspbian OS, I'll be covering the following.
@@ -351,7 +357,7 @@ To test the real-time scenario, we deployed it on one of the rooms to test how p
 
 *Video Source: Oxford Town Center public dataset*
 
-[![Working Video](./images/youtube1.png)](link "Working of the Project - Click to Watch!")
+[![Working Video](./images/youtube1.png)](https://youtu.be/RaJa4DdHlXE "Working of the Project - Click to Watch!")
 
 The accuracy in detecting the people is average as the coral supports TFLite models which use an 8bit fixed-point number. i.e INT8 or UINT8. The Tensorflow model of FP32 has quantized to the INT8 TFLite model, which losses some of the important information, which degrades the performance.
 
@@ -359,7 +365,7 @@ The detection can be improved by retraining the detection model using TF and con
 
 I've also made a video tutorial of this project that will cover the entire installation of this project.
 
-[![Working Video](./images/youtube2.png)](link "Video Tutorial - Click to Watch!")
+[![Working Video](./images/youtube2.png)](https://youtu.be/ESLQweINT_Q "Video Tutorial - Click to Watch!")
 
 NOTE: This prototype is licensed. Do not use it for commercialized products without prior permission.
 
